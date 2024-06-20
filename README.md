@@ -21,7 +21,8 @@ Cara menggunakan Aplikasi perpustakan ini
     php artisan key:generate
     ``
 
-  5. Jalankan migrasi database
+  
+5. Jalankan migrasi database
     ```bash
     php artisan migrate
     ```

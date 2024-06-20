@@ -24,6 +24,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin' => \App\Http\Middleware\only_admin::class,
             'user' => \App\Http\Middleware\user::class,
             'quest' =>  \App\Http\Middleware\guest::class,
+            'nama' =>  \App\Http\Middleware\CheckAuth::class,
 
         ]);
     })

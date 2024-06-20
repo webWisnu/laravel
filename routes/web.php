@@ -10,10 +10,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PublicController;
+use App\Http\Controllers\BookrentController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoriesController;
-use App\Http\Controllers\PublicController;
 use App\Http\Controllers\Auth\LogoutController;
 
 Route::get('/', [PublicController::class, 'index']);
@@ -67,4 +68,6 @@ Route::middleware('login')->group(function () {
         Route::get('/user-block', [UserController::class, 'blockUser']);
         Route::get('/user-restore/{slug}', [UserController::class, 'UserRestore']);
     });
+    Route::get('/book-rent', [BookrentController::class, 'index']);
+    Route::post('/book-rent', [BookrentController::class, 'store']);
 });

@@ -29,6 +29,8 @@
 
         </nav>
 
+
+
         <div class="body-content h-100">
             <div class="row g-0 h-100 ">
                 <div class="sidebar col-lg-2 collapse d-lg-block" id="navbarNavDropdown">
@@ -53,10 +55,8 @@
                         @else
                             <a href="#">Profil</a>
 
-                            <a href="/">Book List</a>
 
-
-                            <a href="">Rent Log</a>
+                            <a href="/book-rent">Pinjam Buku</a>
 
                             <a href="/logout">Logout</a>
                         @endif
@@ -64,7 +64,7 @@
                         <a href="/login">Login</a>
 
                         <a class="nav-link" href="/home">Back To Home</a>
-                    
+
                     @endif
 
 

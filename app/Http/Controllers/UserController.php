@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\RentLogs;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function profil(Request $request)
+    public function profil()
     {
 
 
-        return view('profil', ['title' => 'halaman profil', 'judul' => 'User']);
+
+        return view('profil');
     }
+
+
 
 
     public function index()
@@ -34,7 +38,9 @@ class UserController extends Controller
     public function UserShow($slug)
     {
         $user = User::where('slug', $slug)->first();
-        return view('user-detail', ['user' => $user]);
+        $rentlog = RentLogs::with(['user', 'book'])->where('user_id', $user->id)->get();
+
+        return view('user-detail', ['user' => $user, 'rentlog' => $rentlog]);
     }
 
     public function approve($slug)

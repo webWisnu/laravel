@@ -9,6 +9,7 @@ use App\Http\Middleware\only_admin;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\BookrentController;
@@ -34,6 +35,7 @@ Route::middleware('guest')->group(function () {
 Route::middleware('login')->group(function () {
     Route::get('/logout', [AuthLogin::class, 'logout']);
     Route::get('/profil', [UserController::class, 'profil'])->middleware('user');
+    Route::post('/profil-ubah', [UserController::class, 'profilUpdate'])->middleware('user');
 
 
     Route::middleware('admin')->group(function () {
@@ -70,4 +72,7 @@ Route::middleware('login')->group(function () {
     });
     Route::get('/book-rent', [BookrentController::class, 'index']);
     Route::post('/book-rent', [BookrentController::class, 'store']);
+    Route::get('/Logpinjam', [RentController::class, 'index']);
+    Route::get('/book-return', [BookrentController::class, 'BookReturn']);
+    Route::post('/book-return', [BookrentController::class, 'SaveReturnBook']);
 });

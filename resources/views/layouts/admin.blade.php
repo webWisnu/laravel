@@ -14,6 +14,10 @@
 
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
+<style>
+
+</style>
+
 <body>
 
     @yield('navbar')
@@ -53,10 +57,13 @@
 
                             <a href="/logout">Logout</a>
                         @else
-                            <a href="#">Profil</a>
+                            <a href="/profil">Profil</a>
+                            <a href="/Logpinjam">Detail Peminjaman</a>
 
 
                             <a href="/book-rent">Pinjam Buku</a>
+
+                            <a href="/book-return">Kembali Buku</a>
 
                             <a href="/logout">Logout</a>
                         @endif

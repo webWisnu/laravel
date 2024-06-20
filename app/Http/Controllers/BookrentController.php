@@ -39,10 +39,10 @@ class BookrentController extends Controller
         } else {
 
             $count  = RentLogs::where('user_id', $request->user_id)->where('actual_return_date')
-            ->count();
+                ->count();
 
 
-            if($count >= 3){
+            if ($count >= 3) {
                 Session::flash('message', 'Anda telah Mencapai limit peminjaman');
                 Session::flash('alert-class', 'alert-danger');
                 return redirect('book-rent');
@@ -63,6 +63,45 @@ class BookrentController extends Controller
             } catch (\Throwable $th) {
                 DB::rollback();
             }
+        }
+    }
+    public function BookReturn()
+    {
+        $book = book::all();
+        return view('return-book', ['book' => $book]);
+    }
+
+    public function SaveReturnBook(Request $request)
+    {
+        // check apakah data buku yang user pinjam ada
+        $data = RentLogs::where('user_id', $request->user_id)->where('book_id', $request->book_id)
+            ->where('actual_return_date',  null);
+
+
+
+        $book = book::all()->first();
+        //ambil data buku
+        $rent = $data->first();
+        //hitung data buku
+        $countData = $data->count();
+
+
+        if ($countData == 1) {
+            $rent->actual_return_date = Carbon::now()->toDateString();
+
+            $book = book::findOrFail($request->book_id);
+            $book->status = 'in stock';
+            $book->save();
+            $rent->save();
+
+
+            Session::flash('message', 'selamat buku berhasil kembali');
+            Session::flash('alert-class', 'alert-success');
+            return redirect('book-rent');
+        } else {
+            Session::flash('message', 'Anda tidak pernah meminjam  Buku ini silahkan kembalikan buku yang benar');
+            Session::flash('alert-class', 'alert-danger');
+            return redirect('book-return');
         }
     }
 }

@@ -58,12 +58,17 @@
                                 ____
                             @endif
                         </td>
-                          <td>{{ $item->email}}</td>
+                        <td>{{ $item->email }}</td>
 
                         <td>
 
                             <button type="submit" class="btn btn-warning">
                                 <a href="/user-block/{{ $item->slug }}"> block User</a></button>
+                            <button class="btn btn-light">
+                                <a href="/user-detail/{{ $item->slug }}">Detail </a></button>
+
+                            </button>
+
                         </td>
 
                     </tr>

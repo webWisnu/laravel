@@ -54,3 +54,16 @@
 .card-count{
     font-size: 30px;
 }
+
+
+.bg-success {
+    background-color: #d4edda;
+    /* Warna hijau muda untuk pengembalian tepat waktu */
+    color: #155724;
+}
+
+.bg-danger {
+    background-color: #f8d7da;
+    /* Warna merah muda untuk pengembalian terlambat */
+    color: #721c24;
+}
